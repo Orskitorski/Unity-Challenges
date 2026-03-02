@@ -9,7 +9,7 @@ public class SpreadRadius : MonoBehaviour
     {
         Burner obj = collision.GetComponent<Burner>();
 
-        if (!obj.burning && burner.burning)
+        if (obj != null && !obj.burning && burner.burning)
         {
             obj.Burn();
         }
