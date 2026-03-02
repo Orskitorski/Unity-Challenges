@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class Burner : MonoBehaviour
 {
@@ -8,11 +9,6 @@ public class Burner : MonoBehaviour
     private bool mouseEntered = false;
     private bool burning = false;
     [SerializeField] GameObject fireParticles;
-
-    void Start()
-    {
-       
-    }
 
     void Update()
     {
@@ -37,7 +33,15 @@ public class Burner : MonoBehaviour
     {
         burning = true;
         fireParticles.GetComponent<ParticleSystem>().Play();
+        StartCoroutine(BurnTime(5f));
         Debug.Log("Burning");
+    }
+
+    private IEnumerator BurnTime(float waitForSeconds)
+    {
+        var renderer = GetComponent<SpriteRenderer>();
+        yield return new WaitForSeconds(waitForSeconds);
+        renderer.color = Color.black;
     }
 
 }
