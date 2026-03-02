@@ -69,7 +69,6 @@ public class Burner : MonoBehaviour
     {
         anim.Play("ObjectBurn");
         yield return new WaitForSeconds(10f);
-        StartCoroutine("Delete");
         fireParticles.GetComponent<ParticleSystem>().Stop();
         GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(1f);
