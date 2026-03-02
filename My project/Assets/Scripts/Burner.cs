@@ -15,10 +15,17 @@ public class Burner : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(Input.mousePositionDelta);
         //If mouse has entered object, player clicks and object is not burning: call burn function
         if (mouseEntered && Input.GetMouseButtonDown(0) && !burning)
         {
             Burn();
+        }
+        if (mouseEntered && Input.GetMouseButton(1))
+        {
+            Vector3 screen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 worldPos = new Vector2(screen.x, screen.y);
+            transform.position = worldPos;
         }
     }
 
