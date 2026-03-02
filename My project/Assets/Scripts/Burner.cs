@@ -7,14 +7,14 @@ public class Burner : MonoBehaviour
 {
 
     private bool mouseEntered = false;
-    private bool burning = false;
+    public bool burning = false;
     [SerializeField] GameObject fireParticles;
 
     void Update()
     {
         if (mouseEntered && Input.GetMouseButtonDown(0) && !burning)
         {
-            burn();
+            Burn();
         }
     }
 
@@ -29,7 +29,7 @@ public class Burner : MonoBehaviour
         mouseEntered=false;
     }
 
-    void burn()
+    public void Burn()
     {
         burning = true;
         fireParticles.GetComponent<ParticleSystem>().Play();
