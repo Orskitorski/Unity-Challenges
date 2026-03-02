@@ -7,26 +7,21 @@ public class Burner : MonoBehaviour
 
     private bool mouseEntered = false;
 
-    void Start()
-    {
-       
-    }
-
     void Update()
     {
-        if (mouseEntered && Input.GetMouseButtonDown(0))
+        if (mouseEntered && Input.GetMouseButtonDown(0)) //Checks if the mouse is pressed down while hovering over the gameobject, and then calls the burn function if both conditions are met.
         {
             burn();
         }
     }
 
-    public void OnMouseEnter()
+    public void OnMouseEnter() //Checks if the mouse is hovering over the gameobject
     {
         mouseEntered = true;
         Debug.Log("MouseEntered");
     }
 
-    public void OnMouseExit()
+    public void OnMouseExit() //Checks if the mouse is NOT hovering over the gameobject
     {
         mouseEntered=false;
     }
