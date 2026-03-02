@@ -6,19 +6,19 @@ public class Burner : MonoBehaviour
 {
 
     private bool mouseEntered = false;
-    private bool burning = false;
+    public bool burning = false;
     [SerializeField] GameObject fireParticles;
 
     void Start()
     {
-       
+
     }
 
     void Update()
     {
         if (mouseEntered && Input.GetMouseButtonDown(0) && !burning)
         {
-            burn();
+            Burn();
         }
     }
 
@@ -30,14 +30,23 @@ public class Burner : MonoBehaviour
 
     public void OnMouseExit()
     {
-        mouseEntered=false;
+        mouseEntered = false;
     }
 
-    void burn()
+    public void Burn()
     {
         burning = true;
         fireParticles.GetComponent<ParticleSystem>().Play();
         Debug.Log("Burning");
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("COLLIDE");
+        Burner obj = collision.GetComponent<Burner>();
+        if (obj.burning == true)
+        {
+            obj.Burn();
+        }
+    }
 }
