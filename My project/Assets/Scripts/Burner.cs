@@ -6,6 +6,7 @@ public class Burner : MonoBehaviour
     [SerializeField] GameObject fireParticles;
     private bool mouseEntered = false;
     public bool burning = false;
+    private bool beingGrabbed = false;
     private Animator anim;
 
     void Start()
@@ -21,12 +22,25 @@ public class Burner : MonoBehaviour
         {
             Burn();
         }
-        if (mouseEntered && Input.GetMouseButton(1))
+        if (mouseEntered && Input.GetMouseButtonDown(1))
         {
-            Vector3 screen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 worldPos = new Vector2(screen.x, screen.y);
-            transform.position = worldPos;
+            beingGrabbed = true;
         }
+        else if (mouseEntered && Input.GetMouseButtonUp(1))
+        {
+            beingGrabbed = false;
+        }
+        if (beingGrabbed)
+        {
+            Move();
+        }
+    }
+
+    void Move()
+    {
+        Vector3 screen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 worldPos = new Vector2(screen.x, screen.y);
+        transform.position = worldPos;
     }
 
     //If mouse enters bounds of object, set mouseEntered to true
