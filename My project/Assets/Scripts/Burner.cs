@@ -16,7 +16,12 @@ public class Burner : MonoBehaviour
 
     void Update()
     {
-        //If mouse has entered object, player clicks and object is not burning: call burn function
+        MouseCheck();
+    }
+
+    //If mouse has entered object, player clicks and object is not burning: call burn function
+    void MouseCheck()
+    {
         if (mouseEntered && Input.GetMouseButtonDown(0) && !burning)
         {
             Burn();
