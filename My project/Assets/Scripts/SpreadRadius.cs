@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpreadRadius : MonoBehaviour
 {
     [SerializeField] Burner burner;
-    
+
     //Gets the colliding object and checks if it is currently burning, if not: start burning-function on object as long as the other object is burning
     void OnTriggerStay2D(Collider2D collision)
     {
@@ -11,7 +11,13 @@ public class SpreadRadius : MonoBehaviour
 
         if (obj != null && !obj.burning && burner.burning)
         {
-            obj.Burn();
+            obj.heatingUp = true;
         }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        Burner obj = collision.GetComponent<Burner>();
+        obj.heatingUp = false;
     }
 }

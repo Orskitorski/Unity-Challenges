@@ -6,6 +6,8 @@ public class Burner : MonoBehaviour
     [SerializeField] GameObject fireParticles;
     private bool mouseEntered = false;
     public bool burning = false;
+    public float heat = 0;
+    public bool heatingUp;
     private bool beingGrabbed = false;
     private Animator anim;
 
@@ -17,6 +19,20 @@ public class Burner : MonoBehaviour
     void Update()
     {
         MouseCheck();
+
+        if (heatingUp)
+        {
+            heat += Time.deltaTime * 2;
+        }
+        else if (heat > 0 && !heatingUp)
+        {
+            heat -= Time.deltaTime;
+        }
+
+        if (heatingUp && heat > 5 && !burning)
+        {
+            Burn();
+        }
     }
 
     //If mouse has entered object, player clicks and object is not burning: call burn function

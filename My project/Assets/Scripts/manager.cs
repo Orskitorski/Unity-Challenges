@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class manager : MonoBehaviour
 {
-
     [SerializeField] GameObject square;
     [SerializeField] GameObject triangle;
     [SerializeField] GameObject circle;
